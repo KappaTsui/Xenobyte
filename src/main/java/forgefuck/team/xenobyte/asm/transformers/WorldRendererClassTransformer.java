@@ -39,6 +39,11 @@ public class WorldRendererClassTransformer implements IClassTransformer{
 
 					m.instructions.remove(cur.getPrevious());
 					m.instructions.insertBefore(cur, new MethodInsnNode(Opcodes.INVOKESTATIC, Type.getInternalName(NoclipState.class), "isEnabled", "()Z", false));
+
+					for(int i = 0; i < 5; i++) cur = cur.getNext();
+
+					m.instructions.remove(cur.getPrevious());
+					m.instructions.insertBefore(cur, new MethodInsnNode(Opcodes.INVOKESTATIC, Type.getInternalName(NoclipState.class), "isEnabled", "()Z", false));
 				}
 
 			}
