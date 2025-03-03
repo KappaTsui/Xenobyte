@@ -4,6 +4,7 @@ import forgefuck.team.xenobyte.api.config.Cfg;
 import forgefuck.team.xenobyte.api.module.Category;
 import forgefuck.team.xenobyte.api.module.CheatModule;
 import forgefuck.team.xenobyte.api.module.PerformMode;
+import forgefuck.team.xenobyte.asm.hooks.NoclipState;
 import forgefuck.team.xenobyte.gui.click.elements.Button;
 import forgefuck.team.xenobyte.gui.click.elements.Panel;
 import forgefuck.team.xenobyte.gui.click.elements.ScrollSlider;
@@ -26,6 +27,7 @@ public class XenoFly extends CheatModule {
     
     @Override public void onDisabled() {
         utils.player().noClip = false;
+        NoclipState.enabled = false;
     }
     
     @Override public void onTick(boolean inGame) {
@@ -62,6 +64,7 @@ public class XenoFly extends CheatModule {
                 pl.motionY = 0;
             }
             pl.noClip = noclip;
+            NoclipState.enabled = noclip;
         }
     }
     

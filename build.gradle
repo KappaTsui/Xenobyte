@@ -49,6 +49,11 @@ jar {
     from {
         configurations.bundle.collect { it.isDirectory() ? it : zipTree(it); }
     }
+        manifest {
+        attributes(
+            'FMLCorePlugin': 'forgefuck.team.xenobyte.asm.XenoByteASM',
+            'FMLCorePluginContainsFMLMod': 'true')
+    }
 }
 
 processResources {
@@ -134,7 +139,7 @@ task copyJar {
     }
 }
 
-obfuscateProGuard.dependsOn generateDictionary
-createJavaInjectorComment.dependsOn obfuscateProGuard
-copyJar.dependsOn createJavaInjectorComment
-reobf.dependsOn copyJar
+//obfuscateProGuard.dependsOn generateDictionary
+//createJavaInjectorComment.dependsOn obfuscateProGuard
+//copyJar.dependsOn createJavaInjectorComment
+//reobf.dependsOn copyJar
