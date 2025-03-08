@@ -32,15 +32,20 @@ public class WorldRendererClassTransformer implements IClassTransformer{
 				if (m.name.equals("updateRenderer") || (m.name.equals("a") && m.desc.equals("(Lsv;)V"))) {
 					AbstractInsnNode cur = m.instructions.getFirst();
 
-					for(int i = 0; i < 56; i++) {
-						while(!(cur instanceof LabelNode)) cur = cur.getNext();
-						cur = cur.getNext();
-					}	for(int i = 0; i < 3; i++) cur = cur.getNext();
+					while(
+						!(cur instanceof MethodInsnNode)
+						|| (!((MethodInsnNode)cur).owner.equals("blm") && !((MethodInsnNode)cur).owner.equals("net/minecraft/client/renderer/RenderBlocks"))
+						|| (!((MethodInsnNode)cur).name.equals("a") && !((MethodInsnNode)cur).name.equals("setRenderFromInside"))
+						|| !((MethodInsnNode)cur).desc.equals("(Z)V")) cur = cur.getNext();
 
 					m.instructions.remove(cur.getPrevious());
 					m.instructions.insertBefore(cur, new MethodInsnNode(Opcodes.INVOKESTATIC, Type.getInternalName(NoclipState.class), "isEnabled", "()Z", false));
 
-					for(int i = 0; i < 5; i++) cur = cur.getNext();
+					while(
+						!(cur instanceof MethodInsnNode)
+						|| (!((MethodInsnNode)cur).owner.equals("blm") && !((MethodInsnNode)cur).owner.equals("net/minecraft/client/renderer/RenderBlocks"))
+						|| (!((MethodInsnNode)cur).name.equals("b") && !((MethodInsnNode)cur).name.equals("setRenderAllFaces"))
+						|| !((MethodInsnNode)cur).desc.equals("(Z)V")) cur = cur.getNext();
 
 					m.instructions.remove(cur.getPrevious());
 					m.instructions.insertBefore(cur, new MethodInsnNode(Opcodes.INVOKESTATIC, Type.getInternalName(NoclipState.class), "isEnabled", "()Z", false));

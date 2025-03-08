@@ -11,7 +11,7 @@ public interface Xeno {
 
     String mod_id = "xenobyte";
     String mod_name = "X3N0BYT3";
-    String mod_version = "1.0.9";
+    String mod_version = "1.0.1";
     String mod_author = "N1nt4nd0";
     String format_prefix = "§8[§4" + mod_name + "§8]§r ";
     
